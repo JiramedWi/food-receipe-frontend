@@ -3,7 +3,14 @@ import { ReactComponent as BookmarkIcon } from "../../asset/boomark.svg";
 import { ReactComponent as CrossIcon } from "../../asset/cross.svg";
 import { cx } from "@emotion/css";
 
-const FoodCard = ({ title, ingredient, bookmark, instruction, type }) => {
+const FoodCard = ({
+  title,
+  image,
+  ingredient,
+  bookmark,
+  instruction,
+  type,
+}) => {
   const formatInstruction = (instruction) => {
     if (instruction) {
       return instruction.replace(/\n/g, "<br>");
@@ -27,9 +34,10 @@ const FoodCard = ({ title, ingredient, bookmark, instruction, type }) => {
   return (
     <div className="flex flex-col gap-y-4 rounded border-[1px] border-neutral-300 p-4 shadow-sm">
       <div className="flex gap-x-4">
-        <div className="flex flex-col">
+        <div className="flex h-[274px] w-[220px] flex-none flex-col">
           <img
-            className="h-[274px] w-[169px] rounded rounded border-[1px] object-cover"
+            className="h-[274px] w-[220px] rounded rounded border-[1px] object-cover"
+            src={image && require(`../../asset/image/${image}`)}
             alt="name"
           />
           {type === "add" && (
@@ -45,7 +53,7 @@ const FoodCard = ({ title, ingredient, bookmark, instruction, type }) => {
             </BaseButton>
           )}
         </div>
-        <div>
+        <div className="w-full">
           <div className="relative flex items-center justify-between">
             <p className="text-lg font-semibold text-neutral-900">{title}</p>
             {type === "remove" && (

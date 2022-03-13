@@ -23,7 +23,7 @@ const ViewModel = () => {
     setIsLoading(true)
     setSuggestionText('')
     e.preventDefault();
-    if (search) {
+    if (search && search !== "") {
       const payload = {
         query: search,
       };
@@ -35,6 +35,9 @@ const ViewModel = () => {
           setIsLoading(false)
         })
         .catch(err => console.log('err', err))
+    } else if (search === '') {
+      setIsSearch(false)
+      fetchSuggetionList()
     }
 
     return null;
@@ -45,6 +48,7 @@ const ViewModel = () => {
       setSuggestionList(response.data.result)
       setSuggestionText(response.data.suggestion)
       setIsLoading(false)
+      setIsSearch(false)
     }).catch(err => console.log('err', err))
     return null;
   };

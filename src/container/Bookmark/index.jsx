@@ -28,14 +28,6 @@ const Bookmark = () => {
           />
           <PrimaryButton className="ml-2 w-40">Search</PrimaryButton>
         </div>
-        {/* {suggestionText !== "" && (
-          <div className="mx-auto mt-4">
-            <strong className="text-lg">
-              Today recommend :
-              <span className="text-primary-900">{` "${suggestionText}"`}</span>
-            </strong>
-          </div>
-        )} */}
         {correction !== "" && (
           <div className="mx-auto mt-4">
             <strong className="text-lg">
@@ -44,30 +36,10 @@ const Bookmark = () => {
             </strong>
           </div>
         )}
-        {/* {!search && isLoading ? (
-          <p>loading . . .</p>
-        ) : (
-          <>
-            {!isSearch && (
-              <div className="mx-auto grid w-[1140px] grid-cols-2 justify-center gap-4 p-8">
-                {suggestionList.length > 0 &&
-                  suggestionList.map((item) => (
-                    <FoodCard
-                      type="add"
-                      title={item.Title}
-                      ingredient={item.Ingredient}
-                      instruction={item.Instructions}
-                      bookmark={() => handleRemoveBookmark(item.id)}
-                    />
-                  ))}
-              </div>
-            )}
-          </>
-        )} */}
       </form>
       <div className="mx-auto w-[1140px]">
-        {isLoading && !isSearch ? (
-          <p>loading . . .</p>
+        {isLoading && isSearch ? (
+          <div className="mt-8 text-center">loading . . .</div>
         ) : (
           <>
             <div className={cx(isSearch && "hidden", `grid grid-cols-2 gap-4`)}>
@@ -75,6 +47,7 @@ const Bookmark = () => {
                 foodreceipt.map((item) => (
                   <FoodCard
                     type="remove"
+                    image={item.Image}
                     title={item.Title}
                     ingredient={item.Ingredient}
                     instruction={item.Instructions}
@@ -84,8 +57,8 @@ const Bookmark = () => {
             </div>
           </>
         )}
-        {isLoading ? (
-          <p>loading . . .</p>
+        {isLoading && !isSearch ? (
+          <div className="mt-8 text-center">loading . . .</div>
         ) : (
           <>
             <div className="grid grid-cols-2 gap-4">
@@ -94,6 +67,7 @@ const Bookmark = () => {
                   <FoodCard
                     type="remove"
                     title={item.Title}
+                    image={item.Image}
                     ingredient={item.Ingredient}
                     instruction={item.Instructions}
                     bookmark={() => handleRemoveBookmark(item.id)}
