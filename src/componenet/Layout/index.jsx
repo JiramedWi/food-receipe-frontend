@@ -6,11 +6,11 @@ const Layout = ({ children, className }) => {
     <div
       className={cx(
         className,
-        `flex h-screen flex-col items-center justify-center pb-8`
+        `flex flex-col justify-center pb-8`
       )}
     >
       <Navbar />
-      {children}
+     <div className="mt-[80px]">{children}</div>
     </div>
   );
 };

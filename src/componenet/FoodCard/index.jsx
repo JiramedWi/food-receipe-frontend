@@ -3,9 +3,25 @@ import { ReactComponent as BookmarkIcon } from "../../asset/boomark.svg";
 import { ReactComponent as CrossIcon } from "../../asset/cross.svg";
 import { cx } from "@emotion/css";
 
-const FoodCard = ({ title, ingredient, bookmark, type }) => {
+const FoodCard = ({ title, ingredient, bookmark, instruction, type }) => {
   const formatInstruction = (instruction) => {
-    return instruction.replace(/\n/g, "<br>");
+    if (instruction) {
+      return instruction.replace(/\n/g, "<br>");
+    }
+  };
+
+  const fomatIngredient = (ingredient) => {
+    if (ingredient) {
+      const slice = ingredient.slice(1, -1);
+      const split = slice.split(",");
+
+      return split;
+    }
+  };
+
+  const removeQuote = (text) => {
+    const replaceString = text.replace(/'/g, "");
+    return replaceString;
   };
 
   return (
@@ -18,6 +34,7 @@ const FoodCard = ({ title, ingredient, bookmark, type }) => {
           />
           {type === "add" && (
             <BaseButton
+              type="button"
               onClick={bookmark}
               className="mt-2 flex w-auto bg-primary-900 p-2 text-white"
             >
@@ -31,7 +48,7 @@ const FoodCard = ({ title, ingredient, bookmark, type }) => {
         <div>
           <div className="relative flex items-center justify-between">
             <p className="text-lg font-semibold text-neutral-900">{title}</p>
-            {type === "add" && (
+            {type === "remove" && (
               <button type="button" onClick={bookmark}>
                 <CrossIcon
                   className={cx(
@@ -44,7 +61,9 @@ const FoodCard = ({ title, ingredient, bookmark, type }) => {
           <div>
             <ul className="mt-2 list-disc pl-8">
               {ingredient &&
-                ingredient.map((item) => <li key={item}>{item}</li>)}
+                fomatIngredient(ingredient).map((item) => (
+                  <li key={item}>{removeQuote(item)}</li>
+                ))}
             </ul>
           </div>
         </div>
@@ -52,24 +71,9 @@ const FoodCard = ({ title, ingredient, bookmark, type }) => {
       <p
         className="text-sm text-neutral-700"
         dangerouslySetInnerHTML={{
-          __html:
-            formatInstruction(` Grate the zest of 1 orange and the lime into a large bowl. Squeeze 1
-        tablespoon of juice from the grated orange and 2 tablespoons of juice
-        from the grated lime into the bowl (you may need a second lime to get
-        the 2 tablespoons of juice). Whisk in the soy sauce and the oil. Set the
-        dressing aside.\nUse a sharp knife to slice the rind and pith from the
-        remaining oranges. Working over a mixing bowl, cut between the membranes
-        to free the orange segments, letting them drop into the bowl. Pour any
-        juice into a cup and reserve it for another use. Add the mâche, frisée,
-        and cucumbers, if using, to the orange segments. Using a large sharp
-        knife, cut the salmon into 1/3-inch-thick slices. Add the salmon to the
-        bowl. Drizzle with the dressing, and toss gently to coat. Allow the
-        flavors to meld for at least 2 minutes.\nDivide the salad among 4
-        serving plates. Sprinkle with the toasted sesame seeds, and serve.`),
+          __html: formatInstruction(instruction),
         }}
-      >
-        {}
-      </p>
+      ></p>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <div className="fixed top-0 flex h-[80px] w-full items-center bg-primary-900 p-4">
+    <div className="fixed top-0 z-50 flex h-[80px] w-full items-center bg-primary-900 p-4">
       <div className="flex w-full justify-between">
         <div className="flex gap-x-4">
           {navbarItem.map((item) => (

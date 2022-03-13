@@ -19,16 +19,20 @@ const ViewModel = () => {
 
       loginApi(payload)
         .then((response) => {
+          localStorage.setItem('id', response.data.id)
           localStorage.setItem("username", response.data.username);
-          setUser({ username: response.data.username });
+          setUser({
+            id: response.data.id,
+            username: response.data.username
+          });
           setIsLoggedIn(true);
         })
         .then(() =>
           successToast({
             content: (
               <>
-                <p className="mb-[2px] font-semibold text-gray-900">Log in</p>
-                <p className="mt-[2px] text-gray-700">You are logged in.</p>
+                <p className="mb-[2px] font-semibold text-neutral-900">Log in</p>
+                <p className="mt-[2px] text-neutral-700">You are logged in.</p>
               </>
             ),
           })
@@ -38,8 +42,8 @@ const ViewModel = () => {
           errorToast({
             content: (
               <>
-                <p className="mb-[2px] font-semibold text-gray-900">Log in</p>
-                <p className="mt-[2px] text-gray-700">
+                <p className="mb-[2px] font-semibold text-neutral-900">Errors</p>
+                <p className="mt-[2px] text-neutral-700">
                   Something wrong, please try again.
                 </p>
               </>
@@ -50,8 +54,8 @@ const ViewModel = () => {
       errorToast({
         content: (
           <>
-            <p className="mb-[2px] font-semibold text-gray-900">Log in</p>
-            <p className="mt-[2px] text-gray-700">
+            <p className="mb-[2px] font-semibold text-neutral-900">Error</p>
+            <p className="mt-[2px] text-neutral-700">
               Please input username and password to login.
             </p>
           </>
