@@ -1,10 +1,11 @@
+import Layout from "../componenet/Layout";
 import View from "../container/Home";
 
 const HomePage = () => {
   return (
-    <div>
+    <Layout>
       <View />
-    </div>
+    </Layout>
   );
 };
 

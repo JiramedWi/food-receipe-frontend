@@ -1,11 +1,9 @@
-import Layout from "../../componenet/Layout";
-
 const Home = () => {
   return (
-    <Layout>
+    <div>
       <h1>Home</h1>
       <p>This is the home page</p>
-    </Layout>
+    </div>
   );
 };
 

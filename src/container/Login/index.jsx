@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import ViewModel from "./ViewMode";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { loginProps, setLoginProps, onSubmit } = ViewModel();
   return (
     <div className="flex h-screen flex-col items-center justify-center">
@@ -32,7 +34,9 @@ const Login = () => {
         >
           Login
         </button>
-        <button type="button">register</button>
+        <button type="button" onClick={() => navigate("/register")}>
+          register
+        </button>
       </form>
     </div>
   );
