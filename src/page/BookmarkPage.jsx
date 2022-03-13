@@ -3,7 +3,7 @@ import View from "../container/Bookmark";
 
 const BookmarkPage = () => {
   return (
-    <Layout className="flex h-auto flex-row">
+    <Layout>
       <View />
     </Layout>
   );

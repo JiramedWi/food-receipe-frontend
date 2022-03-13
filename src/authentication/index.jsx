@@ -4,7 +4,7 @@ import useAuth from "../hook/useAuth";
 export const AuthManagerContext = createContext({});
 
 const AuthManager = ({ children }) => {
-  const { user,setUser, isLoggedIn, setIsLoggedIn, loading } = useAuth();
+  const { user, setUser, isLoggedIn, setIsLoggedIn, loading } = useAuth();
   return (
     <AuthManagerContext.Provider
       value={{

@@ -2,29 +2,24 @@ import FoodCard from "../../componenet/FoodCard";
 import ViewModel from "./ViewMode";
 import TextField from "../../componenet/Input";
 import PrimaryButton from "../../componenet/Button/PrimaryButton";
-import BaseButton from "../../componenet/Button";
 
 const Home = () => {
-  const { onSubmit, search, setSearch, suggestionList, handleBookmark } =
-    ViewModel();
+  const {
+    onSubmit,
+    search,
+    setSearch,
+    suggestionList,
+    handleBookmark,
+    isSearch,
+    foodreceipt,
+    correction,
+    suggestionText,
+    isLoading,
+  } = ViewModel();
 
   return (
-    <div className="mt-20">
-      <form onSubmit={onSubmit} className="mb-8 flex flex-col justify-center">
-        <div className="mx-auto flex justify-center gap-x-6 p-8">
-          {suggestionList.map((item) => (
-            <BaseButton
-              type="submit"
-              className="duration-600 ease w-auto text-xl transition-colors hover:cursor-pointer hover:text-primary-500"
-              onClick={() => {
-                setSearch(item);
-              }}
-            >
-              {item}
-            </BaseButton>
-          ))}
-        </div>
-
+    <div>
+      <form onSubmit={onSubmit} className="my-8 flex flex-col justify-center">
         <div className="mx-auto">
           <TextField
             type="search"
@@ -33,42 +28,62 @@ const Home = () => {
           />
           <PrimaryButton className="ml-2 w-40">Search</PrimaryButton>
         </div>
+        {suggestionText !== "" && (
+          <div className="mx-auto mt-4">
+            <strong className="text-lg">
+              Today recommend :
+              <span className="text-primary-900">{` "${suggestionText}"`}</span>
+            </strong>
+          </div>
+        )}
+        {correction !== "" && (
+          <div className="mx-auto mt-4">
+            <strong className="text-lg">
+              Do you mean
+              <span className="text-primary-900">{`"${correction}"`}</span> ?
+            </strong>
+          </div>
+        )}
+        {!search && isLoading ? (
+          <p>loading . . .</p>
+        ) : (
+          <>
+            {!isSearch && (
+              <div className="mx-auto grid w-[1140px] grid-cols-2 justify-center gap-4 p-8">
+                {suggestionList.length > 0 &&
+                  suggestionList.map((item) => (
+                    <FoodCard
+                      type="add"
+                      title={item.Title}
+                      ingredient={item.Ingredient}
+                      instruction={item.Instructions}
+                      bookmark={() => handleBookmark(item.id)}
+                    />
+                  ))}
+              </div>
+            )}
+          </>
+        )}
       </form>
       <div className="mx-auto w-[1140px]">
-        <div className="grid grid-cols-2 gap-4">
-          <FoodCard
-            type="add"
-            title={"Noodle"}
-            ingredient={[
-              "4 oranges",
-              "1 or 2 limes",
-              "1 tablespoon soy sauce",
-              "3 tablespoons grapeseed oil",
-              '"6 cups mâche (lambs lettuce) leaves", 2 cups frisée lettuce, torn into bite-size pieces',
-              "1/2 cucumber, peeled, seeded, and thinly sliced (optional)",
-              "7 ounces sushi-grade salmon, skin removed",
-              "1 teaspoon sesame seeds",
-              "toasted",
-            ]}
-            bookmark={() => handleBookmark()}
-          />
-          <FoodCard
-            type="add"
-            title={"Noodle"}
-            ingredient={[
-              "4 oranges",
-              "1 or 2 limes",
-              "1 tablespoon soy sauce",
-              "3 tablespoons grapeseed oil",
-              '"6 cups mâche (lambs lettuce) leaves", 2 cups frisée lettuce, torn into bite-size pieces',
-              "1/2 cucumber, peeled, seeded, and thinly sliced (optional)",
-              "7 ounces sushi-grade salmon, skin removed",
-              "1 teaspoon sesame seeds",
-              "toasted",
-            ]}
-            bookmark={() => handleBookmark()}
-          />
-        </div>
+        {isLoading && isSearch ? (
+          <p>loading . . .</p>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 gap-4">
+              {foodreceipt.length > 0 &&
+                foodreceipt.map((item) => (
+                  <FoodCard
+                    type="add"
+                    title={item.Title}
+                    ingredient={item.Ingredient}
+                    instruction={item.Instructions}
+                    bookmark={() => handleBookmark(item.id)}
+                  />
+                ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
