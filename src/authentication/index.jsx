@@ -1,32 +1,29 @@
 import { createContext, useContext } from "react";
 import useAuth from "../hook/useAuth";
 
-export const AuthManagerContext = createContext();
+export const AuthManagerContext = createContext({});
 
 const AuthManager = ({ children }) => {
-	console.log("auth manager");
-	const { user, isLoggedIn, setIsLoggedIn, loading } = useAuth();
-	console.log("isLoggedIn", isLoggedIn);
-	console.log('loading', loading)
+  const { user, isLoggedIn, setIsLoggedIn, loading } = useAuth();
 
-	return (
-		<AuthManagerContext.Provider
-			value={{
-				user,
-				isLoggedIn,
-				setIsLoggedIn,
-				loading,
-				publicPath: "/login",
-				privatePath: "/",
-			}}
-		>
-			{!loading && children}
-		</AuthManagerContext.Provider>
-	);
+  return (
+    <AuthManagerContext.Provider
+      value={{
+        user,
+        isLoggedIn,
+        setIsLoggedIn,
+        loading,
+        publicPath: "/login",
+        privatePath: "/",
+      }}
+    >
+      {!loading && children}
+    </AuthManagerContext.Provider>
+  );
 };
 
 export const useContextAuthManager = () => {
-	return useContext(AuthManagerContext);
+  return useContext(AuthManagerContext);
 };
 
 export default AuthManager;
