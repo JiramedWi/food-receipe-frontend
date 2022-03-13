@@ -3,7 +3,7 @@ import View from "../container/Home";
 
 const HomePage = () => {
   return (
-    <Layout>
+    <Layout className="flex h-auto flex-row">
       <View />
     </Layout>
   );
