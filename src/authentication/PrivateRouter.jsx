@@ -4,8 +4,6 @@ import { useContextAuthManager } from ".";
 const PrivateRouter = ({ path, children, ...props }) => {
   const { isLoggedIn, publicPath } = useContextAuthManager();
 
-  console.log("from private isLoggedIn", isLoggedIn);
-
   if (!publicPath) {
     throw new Error("You need to provide a public path for AuthManager");
   }

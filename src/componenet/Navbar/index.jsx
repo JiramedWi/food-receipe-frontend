@@ -19,7 +19,9 @@ const Navbar = () => {
         <div>
           <button
             className="font-medium text-white"
-            onClick={() => setIsLoggedIn(false)}
+            onClick={() => {
+              setIsLoggedIn(false)
+            localStorage.clear()}}
           >
             Log out
           </button>

@@ -6,5 +6,5 @@ export const fetchShowcase = async (params) => {
 			params: params,
 		})
 		.then((response) => response.data)
-		.catch((error) => console.log("error", error));
+		.catch((error) => ("error", error));
 };

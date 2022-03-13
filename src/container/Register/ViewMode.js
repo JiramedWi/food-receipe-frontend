@@ -23,9 +23,6 @@ const ViewModel = () => {
 
       registerApi(payload)
         .then((response) => {
-          console.log("response", response);
-        })
-        .then(() => {
           successToast({
             content: (
               <>
@@ -36,7 +33,9 @@ const ViewModel = () => {
           });
           navigate("/login");
         })
-        .catch((err) => console.log("err", err));
+        .catch((err) => {
+          alert(err)
+        });
     } else {
       errorToast({
         content: (
