@@ -1,7 +1,8 @@
 import BaseButton from "../Button";
 import { ReactComponent as BookmarkIcon } from "../../asset/boomark.svg";
+import { ReactComponent as CrossIcon } from "../../asset/cross.svg";
 
-const FoodCard = ({ title, ingredient, bookmark }) => {
+const FoodCard = ({ title, ingredient, bookmark, type }) => {
   const formatInstruction = (instruction) => {
     return instruction.replace(/\n/g, "<br>");
   };
@@ -14,18 +15,27 @@ const FoodCard = ({ title, ingredient, bookmark }) => {
             className="h-[274px] w-[169px] rounded rounded border-[1px] object-cover"
             alt="name"
           />
-          <BaseButton
-            onClick={bookmark}
-            className="mt-2 flex w-auto bg-primary-900 p-2 text-white"
-          >
-            <div className="flex items-center">
-              <BookmarkIcon className="mr-2 h-4 w-4" />
-              <span className="text-white">Boomark</span>
-            </div>
-          </BaseButton>
+          {type === "add" && (
+            <BaseButton
+              onClick={bookmark}
+              className="mt-2 flex w-auto bg-primary-900 p-2 text-white"
+            >
+              <div className="flex items-center">
+                <BookmarkIcon className="mr-2 h-4 w-4" />
+                <span className="text-white">Boomark</span>
+              </div>
+            </BaseButton>
+          )}
         </div>
         <div>
-          <p className="text-lg font-semibold text-neutral-900">{title}</p>
+          <div className="relative flex items-center justify-between">
+            <p className="text-lg font-semibold text-neutral-900">{title}</p>
+            {type === "remove" && (
+              <button type="button" onClick={bookmark}>
+                <CrossIcon className="h-4 w-4 text-red-500 hover:cursor-pointer" />
+              </button>
+            )}
+          </div>
           <div>
             <ul className="mt-2 list-disc pl-8">
               {ingredient &&

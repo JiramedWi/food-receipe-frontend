@@ -37,6 +37,7 @@ const Home = () => {
       <div className="mx-auto w-[1140px]">
         <div className="grid grid-cols-2 gap-4">
           <FoodCard
+            type="add"
             title={"Noodle"}
             ingredient={[
               "4 oranges",
@@ -52,6 +53,7 @@ const Home = () => {
             bookmark={() => handleBookmark()}
           />
           <FoodCard
+            type="add"
             title={"Noodle"}
             ingredient={[
               "4 oranges",
