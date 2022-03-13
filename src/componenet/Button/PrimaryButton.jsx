@@ -7,7 +7,10 @@ const PrimaryButton = ({ type, onClick, disabled, children, className }) => {
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={cx(className, `bg-primary-500 text-white`)}
+      className={cx(
+        className,
+        `duration-600 bg-primary-500 text-white transition-colors hover:bg-primary-700 active:bg-primary-900`
+      )}
     >
       {children}
     </BaseButton>
