@@ -4,6 +4,7 @@ import PublicRouter from "./authentication/PublicRouter";
 import LoginPage from "./page/LoginPage";
 import HomePage from "./page/HomePage";
 import RegisterPage from "./page/RegisterPage";
+import BookmarkPage from "./page/BookmarkPage";
 
 const Router = () => {
   return (
@@ -29,6 +30,14 @@ const Router = () => {
         element={
           <PrivateRouter>
             <HomePage />
+          </PrivateRouter>
+        }
+      />
+      <Route
+        path="/bookmark"
+        element={
+          <PrivateRouter>
+            <BookmarkPage />
           </PrivateRouter>
         }
       />
