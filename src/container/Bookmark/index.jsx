@@ -1,19 +1,19 @@
 import FoodCard from "../../componenet/FoodCard";
-import ViewModel from "./ViewMode";
 import TextField from "../../componenet/Input";
 import PrimaryButton from "../../componenet/Button/PrimaryButton";
+import ViewModel from "./ViewModel";
+import { cx } from "@emotion/css";
 
-const Home = () => {
+const Bookmark = () => {
   const {
     onSubmit,
     search,
     setSearch,
-    suggestionList,
-    handleBookmark,
+    handleRemoveBookmark,
     isSearch,
     foodreceipt,
     correction,
-    suggestionText,
+    searchBoomarkList,
     isLoading,
   } = ViewModel();
 
@@ -28,14 +28,14 @@ const Home = () => {
           />
           <PrimaryButton className="ml-2 w-40">Search</PrimaryButton>
         </div>
-        {suggestionText !== "" && (
+        {/* {suggestionText !== "" && (
           <div className="mx-auto mt-4">
             <strong className="text-lg">
               Today recommend :
               <span className="text-primary-900">{` "${suggestionText}"`}</span>
             </strong>
           </div>
-        )}
+        )} */}
         {correction !== "" && (
           <div className="mx-auto mt-4">
             <strong className="text-lg">
@@ -44,7 +44,7 @@ const Home = () => {
             </strong>
           </div>
         )}
-        {!search && isLoading ? (
+        {/* {!search && isLoading ? (
           <p>loading . . .</p>
         ) : (
           <>
@@ -57,28 +57,46 @@ const Home = () => {
                       title={item.Title}
                       ingredient={item.Ingredient}
                       instruction={item.Instructions}
-                      bookmark={() => handleBookmark(item.id)}
+                      bookmark={() => handleRemoveBookmark(item.id)}
                     />
                   ))}
               </div>
             )}
           </>
-        )}
+        )} */}
       </form>
       <div className="mx-auto w-[1140px]">
-        {isLoading && isSearch ? (
+        {isLoading && !isSearch ? (
+          <p>loading . . .</p>
+        ) : (
+          <>
+            <div className={cx(isSearch && "hidden", `grid grid-cols-2 gap-4`)}>
+              {foodreceipt.length > 0 &&
+                foodreceipt.map((item) => (
+                  <FoodCard
+                    type="remove"
+                    title={item.Title}
+                    ingredient={item.Ingredient}
+                    instruction={item.Instructions}
+                    bookmark={() => handleRemoveBookmark(item.id)}
+                  />
+                ))}
+            </div>
+          </>
+        )}
+        {isLoading ? (
           <p>loading . . .</p>
         ) : (
           <>
             <div className="grid grid-cols-2 gap-4">
-              {foodreceipt.length > 0 &&
-                foodreceipt.map((item) => (
+              {searchBoomarkList.length > 0 &&
+                searchBoomarkList.map((item) => (
                   <FoodCard
-                    type="add"
+                    type="remove"
                     title={item.Title}
                     ingredient={item.Ingredient}
                     instruction={item.Instructions}
-                    bookmark={() => handleBookmark(item.id)}
+                    bookmark={() => handleRemoveBookmark(item.id)}
                   />
                 ))}
             </div>
@@ -89,4 +107,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Bookmark;

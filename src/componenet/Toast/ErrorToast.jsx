@@ -1,9 +1,9 @@
 import { Slide, toast } from "react-toastify";
 
-export const successToast = (props) => {
+export const errorToast = (props) => {
   return toast(
     <div
-      className="border-success-500 flex border-l-2 text-sm"
+      className="flex border-l-2 border-error-500 text-sm"
       key={`${props.content}`}
     >
       <div className="p-4">{props.content}</div>

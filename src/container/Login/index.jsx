@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import BaseButton from "../../componenet/Button";
+import PrimaryButton from "../../componenet/Button/PrimaryButton";
+import TextField from "../../componenet/Input";
 import ViewModel from "./ViewMode";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { loginProps, setLoginProps, onSubmit } = ViewModel();
   return (
     <div className="flex h-screen flex-col items-center justify-center">
@@ -8,31 +13,35 @@ const Login = () => {
         className="mx-auto flex max-w-[480px] flex-col gap-y-4 rounded border-[1px] border-neutral-500 p-4"
         onSubmit={onSubmit}
       >
-        <input
+        <TextField
           type="text"
-          className="mx-auto h-[40px] min-w-[320px] rounded border-[1px] p-2"
           placeholder="username"
           value={loginProps.username}
           onChange={(e) =>
             setLoginProps({ ...loginProps, username: e.target.value })
           }
         />
-        <input
+        <TextField
           type="password"
-          className="mx-auto h-[40px] min-w-[320px] rounded border-[1px] p-2"
           placeholder="password"
           value={loginProps.password}
           onChange={(e) =>
             setLoginProps({ ...loginProps, password: e.target.value })
           }
         />
-        <button
+        <PrimaryButton
           type="submit"
           className="mx-auto h-[40px] w-[320px] rounded bg-primary-500 text-white"
         >
           Login
-        </button>
-        <button type="button">register</button>
+        </PrimaryButton>
+        <BaseButton
+          className="text-primary-400 hover:text-primary-600 active:text-primary-800"
+          type="button"
+          onClick={() => navigate("/register")}
+        >
+          Register
+        </BaseButton>
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 import Layout from "../componenet/Layout";
-import View from "../container/Home";
+import View from "../container/Bookmark";
 
-const HomePage = () => {
+const BookmarkPage = () => {
   return (
     <Layout>
       <View />
@@ -9,4 +9,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default BookmarkPage;

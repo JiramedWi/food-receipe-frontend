@@ -5,6 +5,4 @@ export const fetchShowcase = async (params) => {
 		.get("/", {
 			params: params,
 		})
-		.then((response) => response.data)
-		.catch((error) => console.log("error", error));
 };
