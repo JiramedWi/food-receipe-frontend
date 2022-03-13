@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useContextAuthManager } from "../../authentication";
-import { successToast } from "../../componenet/Layout/Toast/SuccessToast";
+import { successToast } from "../../componenet/Toast/SuccessToast";
 
 const ViewModel = () => {
   const [loginProps, setLoginProps] = useState({ username: "", password: "" });

@@ -1,11 +1,11 @@
-import View from "../container/Home.jsx";
+import View from "../container/Home";
 
 const HomePage = () => {
-	return (
-		<div>
-			<View />
-		</div>
-	);
+  return (
+    <div>
+      <View />
+    </div>
+  );
 };
 
 export default HomePage;

@@ -1,10 +1,9 @@
-import Layout from "../../componenet/Layout";
 import ViewModel from "./ViewMode";
 
 const Login = () => {
   const { loginProps, setLoginProps, onSubmit } = ViewModel();
   return (
-    <Layout>
+    <div className="flex h-screen flex-col items-center justify-center">
       <form
         className="mx-auto flex max-w-[480px] flex-col gap-y-4 rounded border-[1px] border-neutral-500 p-4"
         onSubmit={onSubmit}
@@ -33,9 +32,9 @@ const Login = () => {
         >
           Login
         </button>
-        <button type="button">toast</button>
+        <button type="button">register</button>
       </form>
-    </Layout>
+    </div>
   );
 };
 
