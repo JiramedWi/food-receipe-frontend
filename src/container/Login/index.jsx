@@ -35,7 +35,11 @@ const Login = () => {
         >
           Login
         </PrimaryButton>
-        <BaseButton type="button" onClick={() => navigate("/register")}>
+        <BaseButton
+          className="text-primary-400 hover:text-primary-600 active:text-primary-800"
+          type="button"
+          onClick={() => navigate("/register")}
+        >
           Register
         </BaseButton>
       </form>

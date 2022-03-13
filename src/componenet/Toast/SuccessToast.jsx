@@ -2,10 +2,10 @@ import { Slide, toast } from "react-toastify";
 
 export const successToast = (props) => {
   return toast(
-    <div className="flex text-sm" key={`${props.content}`}>
-      <div className="flex h-[70px] w-[70px] items-center justify-center border-r border-r-neutral-100">
-        x
-      </div>
+    <div
+      className="border-success-500 flex border-l-2 text-sm"
+      key={`${props.content}`}
+    >
       <div className="p-4">{props.content}</div>
     </div>,
     {
