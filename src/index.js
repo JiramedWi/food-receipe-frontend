@@ -5,16 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import AuthManager from "./authentication";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<AuthManager>
-				<App />
-			</AuthManager>
-		</BrowserRouter>
-	</React.StrictMode>,
-	document.getElementById("root")
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthManager>
+        <App />
+      </AuthManager>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

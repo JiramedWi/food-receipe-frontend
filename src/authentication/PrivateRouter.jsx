@@ -1,18 +1,20 @@
-import { Navigate } from 'react-router-dom';
-import { useContextAuthManager } from '.';
+import { Navigate } from "react-router-dom";
+import { useContextAuthManager } from ".";
 
-const PrivateRouter = ({path, children, ...props}) => {
-    const {isLoggedIn, publicPath} = useContextAuthManager()
+const PrivateRouter = ({ path, children, ...props }) => {
+  const { isLoggedIn, publicPath } = useContextAuthManager();
 
-    if(!publicPath) {
-        throw new Error('You need to provide a public path for AuthManager')
-    }
+  console.log("from private isLoggedIn", isLoggedIn);
 
-    if(!isLoggedIn) {
-        return <Navigate to={publicPath} />
-    }
+  if (!publicPath) {
+    throw new Error("You need to provide a public path for AuthManager");
+  }
 
-    return children
-}
+  if (!isLoggedIn) {
+    return <Navigate to={publicPath} />;
+  }
 
-export default PrivateRouter
+  return children;
+};
+
+export default PrivateRouter;
