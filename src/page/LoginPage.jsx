@@ -1,11 +1,11 @@
 import View from "../container/Login";
 
 const LoginPage = () => {
-	return (
-		<div>
-			<View />
-		</div>
-	);
+  return (
+    <div>
+      <View />
+    </div>
+  );
 };
 
 export default LoginPage;
