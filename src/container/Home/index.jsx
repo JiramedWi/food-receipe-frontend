@@ -2,6 +2,7 @@ import FoodCard from "../../componenet/FoodCard";
 import ViewModel from "./ViewMode";
 import TextField from "../../componenet/Input";
 import PrimaryButton from "../../componenet/Button/PrimaryButton";
+import { cx } from "@emotion/css";
 
 const Home = () => {
   const {
@@ -29,7 +30,7 @@ const Home = () => {
           <PrimaryButton className="ml-2 w-40">Search</PrimaryButton>
         </div>
         {suggestionText !== "" && (
-          <div className="mx-auto mt-4">
+          <div className={cx(isSearch && "hidden", `mx-auto mt-4`)}>
             <strong className="text-lg">
               Today recommend :
               <span className="text-primary-900">{` "${suggestionText}"`}</span>
@@ -37,7 +38,7 @@ const Home = () => {
           </div>
         )}
         {correction !== "" && (
-          <div className="mx-auto mt-4">
+          <div className={cx(!isSearch && "hidden", `mx-auto mt-4`)}>
             <strong className="text-lg">
               Do you mean
               <span className="text-primary-900">{`"${correction}"`}</span> ?
@@ -45,7 +46,7 @@ const Home = () => {
           </div>
         )}
         {!search && isLoading ? (
-          <p>loading . . .</p>
+          <div className="mt-8 text-center">loading . . .</div>
         ) : (
           <>
             {!isSearch && (
@@ -54,6 +55,7 @@ const Home = () => {
                   suggestionList.map((item) => (
                     <FoodCard
                       type="add"
+                      image={item.Image}
                       title={item.Title}
                       ingredient={item.Ingredient}
                       instruction={item.Instructions}
@@ -67,7 +69,7 @@ const Home = () => {
       </form>
       <div className="mx-auto w-[1140px]">
         {isLoading && isSearch ? (
-          <p>loading . . .</p>
+          <div className="mt-8 text-center">loading . . .</div>
         ) : (
           <>
             <div className="grid grid-cols-2 gap-4">
@@ -75,6 +77,7 @@ const Home = () => {
                 foodreceipt.map((item) => (
                   <FoodCard
                     type="add"
+                    image={item.Image}
                     title={item.Title}
                     ingredient={item.Ingredient}
                     instruction={item.Instructions}
