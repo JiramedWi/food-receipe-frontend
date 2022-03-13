@@ -1,10 +1,16 @@
+import { cx } from "@emotion/css";
 import Navbar from "../Navbar";
 
-const Layout = (props) => {
+const Layout = ({ children, className }) => {
   return (
-    <div className="flex h-screen flex-col items-center justify-center border-2 border-red-600">
+    <div
+      className={cx(
+        className,
+        `flex h-screen flex-col items-center justify-center pb-8`
+      )}
+    >
       <Navbar />
-      {props.children}
+      {children}
     </div>
   );
 };
